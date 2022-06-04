@@ -119,7 +119,7 @@ async def async_setup_scanner(hass, config, async_see, discovery_info=None):
 
 	async def parseBLE(msg):
 		try:
-			devs = json.loads(msg.payload).get("devices")
+			devs = json.loads(msg.payload)["devices"]
 		except:
 			return
 		#_LOGGER.debug("{}".format(devs))
