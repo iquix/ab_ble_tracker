@@ -128,6 +128,10 @@ async def async_setup_scanner(hass, config, async_see, discovery_info=None):
 		for x in devs:
 			await perform_bluetooth_update(x)
 
+	if not await mqtt.async_wait_for_mqtt_client(hass):
+		_LOGGER.error("MQTT integration is not available. You should setup MQTT integration first.")
+		return False
+
 	await mqtt.async_subscribe(hass, topic, parseBLE, 0)
 
 	return True
